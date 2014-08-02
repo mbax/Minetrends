@@ -55,13 +55,13 @@ public class sendRunnable implements Runnable {
 			InputStream in = conn.getInputStream();
 			BufferedReader rd = new BufferedReader(new InputStreamReader(in));
 			String responseSingle;
+			StringBuilder responseBuilder = new StringBuilder();
 			while ((responseSingle = rd.readLine()) != null) {
-				String response = null;
-				response = response + responseSingle;
+				responseBuilder.append(responseSingle).append('\n');
 			}
-			String response = rd.readLine();
+			String response = responseBuilder.toString();
 
-			if (response != null) {
+			if (!response.isEmpty()) {
 				ObjectMapper mapper = new ObjectMapper();
 				ResponseProtocol responseObj = mapper.readValue(response, ResponseProtocol.class);
 				if (responseObj.getRESPONSE_CODE() != 200) {
