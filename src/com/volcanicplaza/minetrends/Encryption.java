@@ -49,7 +49,7 @@ public class Encryption {
 
 				byte[] cipherText = new byte[cipher.getOutputSize(input.length)];
 				int ctLength = cipher.update(input, 0, input.length, cipherText, 0);
-				ctLength += cipher.doFinal(cipherText, ctLength);
+				cipher.doFinal(cipherText, ctLength);
 
 				result = Base64.encodeBase64String(cipherText);
 			} catch (Exception ex) {

@@ -12,11 +12,9 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -45,7 +43,6 @@ public class Minetrends extends JavaPlugin {
 	public static String publicKey = null;
 	public static String privateKey = null;
 
-	public static int time = 0;
 	public static BukkitTask runnable;
 
 	//Updater Class
@@ -96,7 +93,7 @@ public class Minetrends extends JavaPlugin {
 	}
 
 	public static int getFrequency() {
-		URL url = null;
+		URL url;
 		HttpURLConnection conn = null;
 		int responseInt = 0;
 
@@ -104,11 +101,6 @@ public class Minetrends extends JavaPlugin {
 		try {
 			url = new URL(Minetrends.hostname + "/api/getfrequency");
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		try {
 			conn = (HttpURLConnection) url.openConnection();
 			try {
 				conn.setRequestMethod("POST"); //use post method
@@ -192,15 +184,10 @@ public class Minetrends extends JavaPlugin {
 	public static String getData() {
 		ObjectMapper mapper = new ObjectMapper();
 
-		List<Player> playersObj = new ArrayList<Player>();
-		for (Player player : plugin.getServer().getOnlinePlayers()) {
-			playersObj.add(player);
-		}
-
 		Map<String, Object> data = new HashMap<String, Object>();
 		Map<String, Object> playersList = new HashMap<String, Object>();
 
-		for (Player plr : playersObj) {
+		for (Player plr : plugin.getServer().getOnlinePlayers()) {
 			Map<String, String> player = new HashMap<String, String>();
 
 			//Player's IP Address
