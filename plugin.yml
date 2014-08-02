@@ -3,7 +3,7 @@ version: '${project.version}'
 website: www.Minetrends.com
 author: NXTGUY & VolcanicPlaza
 
-main: com.volcanicplaza.Minetrends.Minetrends
+main: com.volcanicplaza.minetrends.Minetrends
 database: false
 
 commands:
