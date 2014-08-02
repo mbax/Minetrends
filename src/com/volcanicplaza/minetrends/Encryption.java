@@ -13,9 +13,7 @@ public class Encryption {
 	public static String getServerKey() {
 		String key = Minetrends.key;
 		String privateKey = getPrivateKey();
-		if (privateKey == null) {
-
-		} else {
+		if (privateKey != null) {
 			key = key.replace(privateKey, "");
 		}
 		return key;
@@ -25,9 +23,7 @@ public class Encryption {
 	//Get the private key / key to authenticate with.
 	public static String getPrivateKey() {
 		if (Minetrends.key.length() == 48) {
-			String key = Minetrends.key;
-			String privateKey = key.substring(0, 16);
-			return privateKey;
+			return Minetrends.key.substring(0, 16);
 		} else {
 			return null;
 		}
@@ -43,7 +39,7 @@ public class Encryption {
 			String result = null;
 
 			try {
-				byte[] input = value.toString().getBytes("utf-8");
+				byte[] input = value.getBytes("utf-8");
 
 				MessageDigest md = MessageDigest.getInstance("MD5");
 				byte[] thedigest = md.digest(ENCRYPTION_KEY.getBytes("UTF-8"));

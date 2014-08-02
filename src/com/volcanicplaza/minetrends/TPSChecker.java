@@ -20,9 +20,6 @@ public class TPSChecker implements Runnable {
 	}
 
 	public static long getElapsed(int tickID) {
-		if (TickCount - tickID >= Ticks.length) {
-		}
-
 		long time = Ticks[(tickID % Ticks.length)];
 		return System.currentTimeMillis() - time;
 	}

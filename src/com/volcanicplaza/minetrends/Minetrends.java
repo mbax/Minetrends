@@ -76,8 +76,6 @@ public class Minetrends extends JavaPlugin {
 				Bukkit.getLogger().info("There is a new Minetrends update available for download! (v" + version + ")");
 				Bukkit.getLogger().info("Type /minetrends update to download the update.");
 				Bukkit.getLogger().info("***************************************************************");
-			} else if (updater.getResult() == Updater.UpdateResult.NO_UPDATE) {
-				//Up to date! Yay!
 			}
 		} else {
 			Bukkit.getLogger().info("You have disabled update checking in the Minetrends configuration file!");
@@ -221,7 +219,7 @@ public class Minetrends extends JavaPlugin {
 
 		data.put("players", playersList);
 
-		data.put("BUKKITVERSION", Encryption.encryptString(plugin.getServer().getBukkitVersion().toString()));
+		data.put("BUKKITVERSION", Encryption.encryptString(plugin.getServer().getBukkitVersion()));
 
 		data.put("TIMEZONE", Encryption.encryptString(TimeZone.getDefault().getDisplayName()));
 		data.put("TIMEZONEID", Encryption.encryptString(TimeZone.getDefault().getID()));
@@ -257,8 +255,7 @@ public class Minetrends extends JavaPlugin {
 
 
 		try {
-			String result = mapper.writeValueAsString(data);
-			return result;
+			return mapper.writeValueAsString(data);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
