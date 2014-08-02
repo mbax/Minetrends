@@ -1,11 +1,11 @@
-package com.volcanicplaza.Minetrends;
+package com.volcanicplaza.minetrends;
 
 import java.security.MessageDigest;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 public class Encryption {
 	
@@ -55,7 +55,7 @@ public class Encryption {
 				int ctLength = cipher.update(input, 0, input.length, cipherText, 0);
 				ctLength += cipher.doFinal(cipherText, ctLength);
 			    	
-				result = Base64.encode(cipherText);
+				result = Base64.encodeBase64String(cipherText);
 			} catch (Exception ex){
 				System.err.println(ex);
 			}
